@@ -48,7 +48,7 @@ const Launches = () => {
                 </Card>
               </Link>
             ))}
-          {status === "loading" && <CircularProgress />}
+          {status === "loading" && <CircularProgress isIndeterminate />}
           {status === "failed" && (
             <Alert status="error">
               <AlertIcon />
