@@ -1,7 +1,7 @@
 export interface LaunchesResponse {
     count?:    number;
     next?:     string;
-    previous?: null;
+    previous?: string;
     results?:  Result[];
 }
 

@@ -1,9 +1,9 @@
 import axios from "axios";
-import { LaunchesResponse } from "./types";
+import { LaunchDetailResponse } from "./types";
 
 // A mock function to mimic making an async request for data
-export function fetchLaunches(url:string) {
-  return new Promise<{ data: LaunchesResponse }>(async (resolve, reject) => {
+export function fetchLaunch(url:string) {
+  return new Promise<{ data: LaunchDetailResponse }>(async (resolve, reject) => {
     try {
       const response = await axios.get(url);
       

@@ -1,25 +1,25 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { fetchLaunches } from './launchesAPI';
-import { LaunchesResponse } from './types';
+import { fetchLaunch } from './launchAPI';
+import { LaunchDetailResponse } from './types';
 
-export interface LaunchesState {
-  launches: LaunchesResponse;
+export interface LaunchState {
+  launch: LaunchDetailResponse;
   status: 'idle' | 'loading' | 'failed';
   error: string;
 }
 
-const initialState: LaunchesState = {
-  launches: {},
+const initialState: LaunchState = {
+  launch: {},
   status: 'idle',
   error: 'null,'
 };
 
 export const fetchLaunchesAsync = createAsyncThunk(
-  'launches/fetchLaunches',
+  'launch/fetchLaunch',
   async (url: string, { rejectWithValue }) => {
     try {
-      const response = await fetchLaunches(url);
+      const response = await fetchLaunch(url);
       
       return response.data;
     } catch (error) {
@@ -28,8 +28,8 @@ export const fetchLaunchesAsync = createAsyncThunk(
   },{}
 );
 
-export const launchesSlice = createSlice({
-  name: 'launches',
+export const launchSlice = createSlice({
+  name: 'launch',
   initialState,
   
   reducers: {
@@ -42,7 +42,7 @@ export const launchesSlice = createSlice({
       })
       .addCase(fetchLaunchesAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.launches = action.payload!;
+        state.launch = action.payload!;
       })
       .addCase(fetchLaunchesAsync.rejected, (state, action) => {
         state.status = 'failed';
@@ -51,6 +51,6 @@ export const launchesSlice = createSlice({
   },
 });
 
-export const selectLaunches = (state: RootState) => state.launches.launches;
+export const selectLaunch = (state: RootState) => state.launch.launch;
 
-export default launchesSlice.reducer;
+export default launchSlice.reducer;
