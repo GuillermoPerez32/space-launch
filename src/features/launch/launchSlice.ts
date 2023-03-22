@@ -15,11 +15,11 @@ const initialState: LaunchState = {
   error: 'null,'
 };
 
-export const fetchLaunchesAsync = createAsyncThunk(
+export const fetchLaunchAsync = createAsyncThunk(
   'launch/fetchLaunch',
-  async (url: string, { rejectWithValue }) => {
+  async (launchId: string, { rejectWithValue }) => {
     try {
-      const response = await fetchLaunch(url);
+      const response = await fetchLaunch(`https://spacelaunchnow.me/api/3.3.0/launch/${launchId}`);
       
       return response.data;
     } catch (error) {
@@ -37,14 +37,14 @@ export const launchSlice = createSlice({
   
   extraReducers: (builder) => {
     builder
-      .addCase(fetchLaunchesAsync.pending, (state) => {
+      .addCase(fetchLaunchAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchLaunchesAsync.fulfilled, (state, action) => {
+      .addCase(fetchLaunchAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.launch = action.payload!;
       })
-      .addCase(fetchLaunchesAsync.rejected, (state, action) => {
+      .addCase(fetchLaunchAsync.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload as string;
       });

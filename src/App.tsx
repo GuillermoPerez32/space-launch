@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     element: <Launches />,
   },
   {
-    path: "/:contact",
+    path: "/:launchId",
     element: <Launch />,
   },
 ]);

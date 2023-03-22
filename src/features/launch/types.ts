@@ -17,7 +17,7 @@ export interface LaunchDetailResponse {
     failreason?:        string;
     hashtag?:           null;
     rocket?:            Rocket;
-    mission?:           null;
+    mission?:           Mission;
     pad?:               Pad;
     infoURLs?:          any[];
     vidURLs?:           any[];
@@ -25,9 +25,19 @@ export interface LaunchDetailResponse {
     infographic_url?:   null;
 }
 
+export interface Mission {
+    id?:                number;
+    launch_library_id?: null;
+    name?:              string;
+    description?:       string;
+    type?:              string;
+    orbit?:             string;
+    orbit_abbrev?:      string;
+}
+
 export interface Pad {
     id?:        number;
-    agency_id?: null;
+    agency_id?: number;
     name?:      string;
     info_url?:  null;
     wiki_url?:  string;
@@ -67,8 +77,8 @@ export interface Configuration {
     maiden_flight?:           Date;
     launch_mass?:             number;
     leo_capacity?:            number;
-    gto_capacity?:            null;
-    to_thrust?:               null;
+    gto_capacity?:            number;
+    to_thrust?:               number;
     apogee?:                  null;
     vehicle_range?:           null;
     image_url?:               string;
@@ -93,9 +103,9 @@ export interface LaunchServiceProvider {
     successful_launches?: number;
     failed_launches?:     number;
     pending_launches?:    number;
-    info_url?:            null;
+    info_url?:            string;
     wiki_url?:            string;
-    logo_url?:            null;
+    logo_url?:            string;
     image_url?:           null;
     nation_url?:          null;
 }
