@@ -1,7 +1,7 @@
-import React from "react";
+import { useParams } from "react-router-dom";
 
-const Launch = () => {
-  return <div>Launch 25</div>;
-};
+export default function Launch() {
+  const { contact } = useParams();
 
-export default Launch;
+  return <>Launch number {contact}</>;
+}

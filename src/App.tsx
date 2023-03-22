@@ -12,10 +12,9 @@ const router = createBrowserRouter([
     element: <Launches />,
   },
   {
-    path: "/:id",
+    path: "/:contact",
     element: <Launch />,
   },
-  {},
 ]);
 
 function App() {
